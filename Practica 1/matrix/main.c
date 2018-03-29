@@ -36,6 +36,21 @@ int main()
 
 	matriz_imprimir(matriz);
 
+	Matriz* id = matriz_identidad(3);
+
+  matriz_imprimir(id);
+
+  Matriz* matrix = matriz_crear(3,3);
+  Matriz* matriy = matriz_identidad(3);
+
+  Matriz mx = (*matrix);
+  Matriz my = (*matriy);
+
+  Matriz* concat = matriz_concatenar(mx, my);
+
+  matriz_imprimir(concat);
+
+  matriz_destruir(id);
 
 	matriz_destruir(matriz);
   

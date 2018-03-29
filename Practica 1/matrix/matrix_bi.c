@@ -63,3 +63,32 @@ void matriz_insertar_fila(Matriz* matriz, int pos){
 	for(i = 1; i < matriz->ncols+1; i++)
 		matriz_escribir(matriz, pos, i, 0);
 }
+
+Matriz* matriz_identidad(int n){
+  int i, j;
+  Matriz* matriz = matriz_crear(n, n);
+
+  for(i = 0; i < n;i++)
+    for(j = 0; j < n; j++){
+      if(i == j) matriz->datos[i][j] = 1;
+      else
+        matriz->datos[i][j] = 0;
+    }
+  return matriz;
+}
+
+Matriz* matriz_concatenar(Matriz a, Matriz b){
+  if(a.nfilas != b.ncols) return NULL;
+
+  int i, j;
+  int c = a.ncols + b.ncols;
+  Matriz* new = matriz_crear(a.nfilas, c);
+
+  for(i = 0; i < a.nfilas; i++)
+    for(j = 0; j < c; j++){
+      if(j < a.ncols) new->datos[i][j] = a.datos[i][j];
+      new->datos[i][j] = b.datos[i][j - a.ncols];
+    }
+
+  return new;
+}
