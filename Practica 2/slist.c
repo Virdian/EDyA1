@@ -29,7 +29,7 @@ SList slist_agregar_final(SList lista, int dato) {
 
   SList nodo = lista;
   for (;nodo->sig != NULL;nodo = nodo->sig);
-  /* ahora 'nodo' apunta al ultimo elemento en la lista */
+  // ahora 'nodo' apunta al ultimo elemento en la lista
 
   nodo->sig = nuevoNodo;
   return lista;
@@ -143,8 +143,7 @@ SList slist_intersecar(SList lista, SList listb){
   return listc;
 }
 
-SList slist_intersecar_custom(SList lista, SList listb,
-                                                  FuncionComparante comparador){
+SList slist_intersecar_custom(SList lista, SList listb, FuncionComparante comparador){
   if (slist_vacia(lista) || slist_vacia(listb)){
     return NULL;
   }
