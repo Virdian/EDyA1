@@ -1,61 +1,76 @@
-#include "slist.h"
+#include "cslist.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
-SList slist_crear() {
+CSList cslist_crear() {
   return NULL;
 }
 
-void slist_destruir(SList lista) {
-  SNodo *nodoAEliminar;
-  while (lista != NULL) {
-    nodoAEliminar = lista;
-    lista = lista->sig;
+void cslist_destruir(CSList lista) {
+  if(cslist_vacia(lista)) return;
+  CSNodo *nodoAEliminar;
+  CSList temp = lista->sig;
+  while (temp != lista) {
+    nodoAEliminar = temp;
+    temp = temp->sig;
     free(nodoAEliminar);
   }
+  free(lista);
 }
 
-int slist_vacia(SList lista) {
+int cslist_vacia(CSList lista) {
   return lista == NULL;
 }
 
-SList slist_agregar_final(SList lista, int dato) {
-  SNodo *nuevoNodo = malloc(sizeof(SNodo));
+CSList cslist_agregar_final(CSList lista, int dato) {
+  CSNodo *nuevoNodo = malloc(sizeof(CSNodo));
   nuevoNodo->dato = dato;
-  nuevoNodo->sig = NULL;
 
-  if (lista == NULL)
+  if (lista == NULL){
+    nuevoNodo->sig = nuevoNodo;
     return nuevoNodo;
+  }
 
-  SList nodo = lista;
-  for (;nodo->sig != NULL;nodo = nodo->sig);
-  // ahora 'nodo' apunta al ultimo elemento en la lista
+  nuevoNodo->sig = lista->sig;
+  lista->sig = nuevoNodo;
 
-  nodo->sig = nuevoNodo;
-  return lista;
-}
-
-SList slist_agregar_inicio(SList lista, int dato) {
-  SNodo *nuevoNodo = malloc(sizeof(SNodo));
-  nuevoNodo->dato = dato;
-  nuevoNodo->sig = lista;
   return nuevoNodo;
 }
 
-void slist_recorrer(SList lista, FuncionVisitante visit) {
-  for (SNodo *nodo = lista; nodo != NULL; nodo = nodo->sig)
-    visit(nodo->dato);
+CSList cslist_agregar_inicio(CSList lista, int dato) {
+  CSNodo *nuevoNodo = malloc(sizeof(CSNodo));
+  nuevoNodo->dato = dato;
+
+  if (lista == NULL){
+    nuevoNodo->sig = nuevoNodo;
+    return nuevoNodo;
+  }
+
+  nuevoNodo->sig = lista->sig;
+  lista->sig = nuevoNodo;
+  return lista;
 }
 
-int slist_longitud(SList lista){
+void cslist_recorrer(CSList lista, FuncionVisitante visit){
+  if (lista == NULL) return;
+  for (CSList temp = lista->sig; temp != lista ; temp = temp->sig){
+    visit(temp->dato);
+    }
+    visit(lista->dato);
+}
+
+int cslist_longitud(CSList lista){
   if (lista == NULL){
     return 0;
   }
   int i;
-  for(i = 0; lista != NULL; lista = lista->sig, i++ );
+  CSList temp = lista->sig;
+  for(i = 1; temp != lista; temp = temp->sig, i++);
   return i;
 }
-
+// ----------------------------------------------------------------------------
+/*
 SList slist_concatenar(SList lista, SList listb){
   if (lista == NULL){
     return listb;
@@ -108,13 +123,13 @@ int slist_contiene(SList lista, int dato){
     }
   return 0;
 }
-
+*/
 /* for(; lista != NULL; lista = lista->sig){
     if(lista->dato == dato) return 1;
   }
   return 0;
 */
-
+/*
 int slist_indice(SList lista, int dato){
   if(lista == NULL){
     return -1;
@@ -143,7 +158,8 @@ SList slist_intersecar(SList lista, SList listb){
   return listc;
 }
 
-SList slist_intersecar_custom(SList lista, SList listb, FuncionComparante comparador){
+SList slist_intersecar_custom(SList lista, SList listb,
+                                                  FuncionComparante comparador){
   if (slist_vacia(lista) || slist_vacia(listb)){
     return NULL;
   }
@@ -172,13 +188,40 @@ void slist_ordenar(SList lista, FuncionComparante ordenador){
   }
 }
 
-void slist_reverso(SList lista){
-  if(slist_vacia(lista)) return;
+SList slist_reverso(SList lista){
+  if(slist_vacia(lista)) return lista;
   SList temp1 = lista->sig;
   lista->sig = NULL;
-  for(;temp1 != NULL; temp1 = temp1->sig){
+  for(;temp1 != NULL;){
     SList temp2 = temp1;
+    temp1 = temp1->sig;
     temp2->sig = lista;
     lista = temp2;
   }
+  return lista;
 }
+
+SList slist_intercalar(SList lista, SList listb){
+  if(lista == NULL) return listb;
+  if(listb == NULL) return lista;
+
+  int longa = slist_longitud(lista);
+  int longb = slist_longitud(listb);
+
+  if(longa < longb){
+    SList temp = lista;
+    lista = listb;
+    listb = temp;
+  }
+
+  SList listc = slist_crear();
+  for(; lista != NULL; lista = lista->sig){
+    listc = slist_agregar_final(listc, lista->dato);
+    if(listb != NULL){
+    listc = slist_agregar_final(listc, listb->dato);
+    listb = listb->sig;
+    }
+  }
+  return listc;
+}
+*/

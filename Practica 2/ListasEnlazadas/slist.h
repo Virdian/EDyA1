@@ -94,14 +94,18 @@ SList slist_intersecar_custom(SList lista, SList listb,
                                                   FuncionComparante comparador);
 
 /**
-*ordena una lista de acuerdo al criterio dado por una funcion de comparacion
+*Ordena una lista de acuerdo al criterio dado por una funcion de comparacion
  (que usa los mismos valores de retorno que strcmp()) pasada por parametro.
 */
 void slist_ordenar(SList lista, FuncionComparante ordenador);
 
 /**
- *obtiene el reverso de una lista
+ *Obtiene el reverso de una lista
 */
-void slist_reverso(lista); 
+SList slist_reverso(SList lista);
+/**
+ *Dadas dos listas, intercale sus elementos en la lista resultante
+*/
+SList slist_intercalar(SList lista, SList listb);
 
 #endif /* __SLIST_H__ */

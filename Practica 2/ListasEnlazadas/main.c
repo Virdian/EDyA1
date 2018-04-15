@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
   puts("");
   slist_recorrer(listb, imprimir_entero);
   puts("");
+  /*
 
   //listb = slist_insertar(listb, 20, 3);
   int longi = slist_longitud(lista);
@@ -79,12 +80,25 @@ int main(int argc, char *argv[]) {
   slist_recorrer(desordenada, imprimir_entero);
   puts("");
 
+  printf("Lista: ");
+  slist_recorrer(lista, imprimir_entero);
+  puts("");
+  lista = slist_reverso(lista);
+  slist_recorrer(lista, imprimir_entero);
+  puts("");
+*/
+
+  SList listd = slist_crear();
+  listd = slist_intercalar(lista, listb);
+  slist_recorrer(listd, imprimir_entero);
+  puts("");
 
   slist_destruir(lista);
   slist_destruir(listb);
-  slist_destruir(listc);
-  slist_destruir(vacia);
-  slist_destruir(desordenada);
+  //slist_destruir(listc);
+  //slist_destruir(vacia);
+  //slist_destruir(desordenada);
+  slist_destruir(listd);
 
   return 0;
 }
