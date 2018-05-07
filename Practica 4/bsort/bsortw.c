@@ -4,6 +4,8 @@ static void swap(int *p, int *q) {
   *q = t;
 }
 
+//implementación de bsort utilizando while
+
 void bsort(int datos[], int tam) {
   int ordenado = 0, i;
 
