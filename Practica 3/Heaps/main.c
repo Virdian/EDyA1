@@ -20,16 +20,11 @@ bheap_imprimir(heapa);
 printf("esta heapa vacio: %d\n", bheap_es_vacio(heapa));
 printf("Minimo elemento del heapa: %d\n", bheap_minimo(heapa));
 
-
-
 bheap_eliminar_minimo(heapa);
 bheap_eliminar_minimo(heapa);
 bheap_eliminar_minimo(heapa);
-
 
 bheap_imprimir(heapa);
-
-
 
 bheap_destruir(heapa);
 

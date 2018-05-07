@@ -22,7 +22,18 @@ int main(int argc, char *argv[]) {
   queue1 = cola_crear();
   queue2 = cola_crear();
 
+  cola_encolar(queue1, 1);
+  cola_encolar(queue1, 2);
+  cola_encolar(queue1, 3);
+  cola_encolar(queue1, 4);
+  cola_encolar(queue1, 5);
+
+  cola_imprimir(queue1);
+
+
+
   printf("esta vacia queue1? %d \n", cola_es_vacia(queue1));
+  printf("esta vacia queue2? %d \n", cola_es_vacia(queue2));
 
 
 

@@ -7,9 +7,8 @@ typedef struct _BHeap {
   int nelems;
 } *BHeap;
 
-
-
 //ESTAMOS USANDO MIN HEAPS: ¡EL MENOR ELEMENTO ESTA EN LA RAIZ!
+
 /*
 * crea un heap vacıo
 */

@@ -43,8 +43,6 @@ void bheap_insertar(BHeap heap, int dato){
   heap->nelems++;
 }
 
-
-
 void bheap_hundir(BHeap heap, int pos){
   if( (pos*2 + 1) < heap->nelems && (pos*2 + 2) < heap->nelems){
     if (heap->datos[pos*2 + 1] > heap->datos[pos*2 + 2]){
@@ -62,14 +60,11 @@ void bheap_hundir(BHeap heap, int pos){
   }
 }
 
-
 void bheap_eliminar_minimo(BHeap heap){
   heap->datos[0] = heap->datos[(heap->nelems) - 1];
   heap->nelems--;
   bheap_hundir(heap, 0);
 }
-
-
 
 void bheap_imprimir(BHeap heap){
   for(int i = 0; i < heap->nelems; i++){
