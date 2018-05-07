@@ -11,11 +11,11 @@ int main(void){
 
 	SList list = slist_crear();
 
-	list = slist_agregar_final(list, 4);
-  list = slist_agregar_inicio(list, 3);
-  list = slist_agregar_final(list, 1);
-  list = slist_agregar_inicio(list, 0);
-  list = slist_agregar_inicio(list, 2);
+	list = slist_agregar_final(list, 2);
+  list = slist_agregar_inicio(list, 7);
+  list = slist_agregar_final(list, 9);
+  list = slist_agregar_inicio(list, 8);
+  list = slist_agregar_inicio(list, 5);
   
 
   slist_recorrer(list, imprimir_entero);
