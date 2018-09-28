@@ -44,7 +44,7 @@ void bheap_insertar(BHeap heap, int dato){
 }
 
 void bheap_hundir(BHeap heap, int pos){
-  if( (pos*2 + 1) < heap->nelems && (pos*2 + 2) < heap->nelems){
+  if((pos*2 + 1) < heap->nelems && (pos*2 + 2) < heap->nelems){
     if (heap->datos[pos*2 + 1] > heap->datos[pos*2 + 2]){
       int s = heap->datos[pos*2 + 2];
       heap->datos[pos*2 + 2] = heap->datos[pos];

@@ -1,0 +1,56 @@
+#include "matrix.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+void matriz_imprimir(Matriz* matriz){
+  int i, j;
+	for(i = 1; i <= matriz_nfilas(matriz); i++){
+		for(j = 1; j <= matriz_ncolumnas(matriz); j++){
+			printf("%f\t", matriz_leer(matriz, i, j));
+		}
+		puts("");
+	}
+
+	puts("");
+}
+
+int main()
+{
+	int i, j;
+
+	Matriz* matriz = matriz_crear(3, 3);
+// recordar usar -lm cuando compilo, para linkear la libreria de math
+	for(i = 1; i <= matriz_nfilas(matriz); i++)
+		for(j = 1; j <= matriz_ncolumnas(matriz); j++)
+			matriz_escribir(matriz, i, j, i*j + (sqrt((float) i*j + 0.42)));
+			//matriz_escribir(matriz, i, j, 4);
+	matriz_imprimir(matriz);
+
+	matriz_intercambiar_filas(matriz, 2, 3);
+
+	matriz_imprimir(matriz);
+
+	matriz_insertar_fila(matriz, 4);
+
+	matriz_imprimir(matriz);
+
+  Matriz* id = matriz_identidad(3);
+
+  matriz_imprimir(id);
+
+  Matriz* matrix = matriz_crear(3,3);
+  Matriz* matriy = matriz_identidad(3);
+
+  Matriz mx = (*matrix);
+  Matriz my = (*matriy);
+
+  Matriz* concat = matriz_concatenar(mx, my);
+
+  matriz_imprimir(concat);
+
+	matriz_destruir(matriz);
+  matriz_destruir(id);
+
+	return 0;
+}
